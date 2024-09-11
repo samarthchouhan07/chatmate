@@ -64,6 +64,8 @@ export const ChatInput = ({ placeholder }: ChatInputProps) => {
           body: image,
         });
 
+        console.log({result})
+
         if (!result.ok) {
           throw new Error("Failed to upload image");
         }
@@ -76,7 +78,7 @@ export const ChatInput = ({ placeholder }: ChatInputProps) => {
       await createMessage(values, {
         throwError: true,
       });
-      setEditorKey((prevKey) => (prevKey = 1));
+      setEditorKey((prevKey) => prevKey + 1);
     } catch (error) {
       toast.error("Failed to send message");
     } finally {
