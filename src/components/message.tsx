@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Hint } from "./hint";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Thumbnail } from "./Thumbnail";
+import { Toolbar } from "./toolbar";
 
 const Renderer = dynamic(() => import("@/components/rendered"), { ssr: false });
 
@@ -105,10 +106,23 @@ export const Message = ({
           <Renderer value={body} />
           <Thumbnail url={image} />
           {updatedAt ? (
-            <span className="text-xs text-muted-foreground">Edited </span>
+            <span className="text-xs text-muted-foreground">(edited)</span>
           ) : null}
         </div>
       </div>
+      {
+        !isEditing && (
+          <Toolbar
+             isAuthor={isAuthor}
+             isPending={false}
+             handleEdit={()=>setEditingId(id)}
+             handleThread={()=>{}}
+             handleDelete={()=>{}}
+             handleReaction={()=>{}}
+             hideThreadButton={hideThreadButton}
+          />
+        )
+      }
     </div>
   );
 };
