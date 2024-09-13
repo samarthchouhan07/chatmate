@@ -1,3 +1,10 @@
-{
-  "extends": "next/core-web-vitals"
-}
+module.exports = {
+  overrides: [
+    {
+      files: ['src/components/Thumbnail.ts'],
+      rules: {
+        '@next/next/no-img-element': 'off',
+      },
+    },
+  ],
+};
