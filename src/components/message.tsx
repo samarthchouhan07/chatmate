@@ -13,6 +13,7 @@ import { useConfirm } from "@/hooks/use-confirm";
 import { useToggleReaction } from "@/features/reactions/api/use-toggle-reaction";
 import { Reactions } from "./reactions";
 import { usePanel } from "@/hooks/use-panel";
+import { ThreadBar } from "./thread-bar";
 
 const Renderer = dynamic(() => import("@/components/rendered"), { ssr: false });
 const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
@@ -39,6 +40,7 @@ interface MessageProps {
   hideThreadButton?: boolean;
   threadCount?: number;
   threadImage?: string;
+  threadName?:string
   threadTimestamp?: number;
 }
 
@@ -63,6 +65,7 @@ export const Message = ({
   hideThreadButton,
   threadCount,
   threadImage,
+  threadName,
   threadTimestamp,
 }: MessageProps) => {
   const { onOpenMessage, onClose, parentMessageId } = usePanel();
@@ -100,8 +103,8 @@ export const Message = ({
       {
         onSuccess: () => {
           toast.success("Message deleted");
-          if(parentMessageId === id){
-             onClose()
+          if (parentMessageId === id) {
+            onClose();
           }
         },
         onError: () => {
@@ -163,6 +166,13 @@ export const Message = ({
                   </span>
                 ) : null}
                 <Reactions data={reactions} onChange={handleReaction} />
+                <ThreadBar
+                  count={threadCount}
+                  image={threadImage}
+                  timestamp={threadTimestamp}
+                  name={threadName}
+                  onClick={() => onOpenMessage(id)}
+                />
               </div>
             )}
           </div>
@@ -235,6 +245,13 @@ export const Message = ({
                 <span className="text-xs text-muted-foreground">(edited)</span>
               ) : null}
               <Reactions data={reactions} onChange={handleReaction} />
+              <ThreadBar
+                count={threadCount}
+                image={threadImage}
+                timestamp={threadTimestamp}
+                name={threadName}
+                onClick={() => onOpenMessage(id)}
+              />
             </div>
           )}
         </div>
