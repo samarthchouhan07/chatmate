@@ -1,5 +1,5 @@
 module.exports = {
-  "parser": "babel-eslint",
+  parser: '@typescript-eslint/parser', 
   overrides: [
     {
       files: ['src/components/**/*.ts', 'src/components/**/*.tsx'],
@@ -8,4 +8,7 @@ module.exports = {
       },
     },
   ],
+  parserOptions: {
+    project: './tsconfig.json', 
+  },
 };
