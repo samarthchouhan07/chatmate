@@ -76,18 +76,6 @@ export const WorkspaceHeader = ({
             )}
           </DropdownMenuContent>
         </DropdownMenu>
-        <div className="flex items-center gap-0.5">
-          <Hint label="Filter Conversations" side="bottom">
-            <Button variant={"transparent"} size={"iconSm"}>
-              <ListFilter className="size-4" />
-            </Button>
-          </Hint>
-          <Hint label="New Message" side="bottom">
-            <Button variant={"transparent"} size={"iconSm"}>
-              <SquarePen className="size-4" />
-            </Button>
-          </Hint>
-        </div>
       </div>
     </>
   );
